@@ -1,0 +1,22 @@
+@startuml 8. Elaborar informe de balanceo
+
+actor Encargado_de_contabilidad
+
+
+Encargado_de_contabilidad -> "Realizar informe de balanceo" 
+
+
+"Realizar informe de balanceo" -> "Mensajero": Verifica mensajero
+"Realizar informe de balanceo" -> "Factura": Verifica factura 
+
+
+"Mensajero"--> "Realizar informe de balanceo" : Existe mensajero
+"Mensajero" -> "Planilla": Verifica deposito del mensajero 
+"Planilla" --> "Mensajero": Deposito correcto
+"Planilla" --> "Factura": Verifica saldo
+
+"Planilla"--> "Realizar informe de balanceo" : Balanceo correcto
+
+"Factura"--> "Realizar informe de balanceo" : Existe factura
+
+@enduml

@@ -1,0 +1,12 @@
+@startuml 2. Gestionar RRHH
+actor Encargado_RRHH
+
+Encargado_RRHH -- (Gestionar RRHH)
+
+(Gestionar RRHH).> (Verificar empleado): <<Include>>
+(Gestionar RRHH).> (Verificar cargo): <<Include>>
+(Gestionar RRHH)<.- (Insertar empleado): <<Extend>>
+(Gestionar RRHH)<.- (Modificar empleado): <<Extend>>
+(Gestionar RRHH)<.- (Eliminar empleado): <<Extend>>
+
+@enduml

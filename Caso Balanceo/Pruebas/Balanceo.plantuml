@@ -1,0 +1,37 @@
+@startuml Balanceo
+
+actor Cliente
+actor Encargado_contabilidad
+actor Encargado_de_caja
+actor Encargado_de_venta
+actor Encargado_RRHH
+actor Mensajero
+
+Encargado_contabilidad -- Cliente 
+Encargado_contabilidad -- (Balancear facturas y depositos)
+Encargado_contabilidad -- (Realizar comprobante)
+Encargado_contabilidad -- (Gestionar cuentas de empresa)
+Encargado_contabilidad -- (Elaborar informe de balanceo)
+
+
+
+Encargado_de_venta --(Gestionar clientes) 
+(Gestionar clientes) .> (Verificar Cliente): <<Include>>
+(Gestionar clientes) <.-(Modificar cliente): <<Extend>>
+(Gestionar clientes) <.- (Eliminar cliente): <<Extend>>
+(Gestionar clientes)<.-(Insertar cliente): <<Extend>>
+
+
+Encargado_de_venta --(Gestionar productos)
+
+
+Encargado_de_caja -- (Realizar factura)
+Encargado_de_caja -- (Realizar planilla) 
+Encargado_de_caja -- Encargado_de_venta 
+Encargado_de_caja -- Cliente
+Encargado_de_caja -- Mensajero
+
+
+
+
+@enduml

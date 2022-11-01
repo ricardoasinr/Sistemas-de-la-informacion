@@ -1,0 +1,12 @@
+@startuml 8. Elaborar Informe de balanceo
+
+actor Encargado_de_contabilidad
+
+
+
+Encargado_de_contabilidad -- (Realizar informe de balanceo)
+
+
+
+
+@enduml

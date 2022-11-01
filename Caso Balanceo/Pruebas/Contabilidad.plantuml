@@ -1,0 +1,24 @@
+@startuml Contabilidad
+
+actor Encargado_contabilidad
+
+
+
+
+Encargado_contabilidad -- (Balancear facturas y depositos)
+Encargado_contabilidad ----- (Realizar comprobante)
+Encargado_contabilidad -- (Gestionar cuentas de empresa)
+Encargado_contabilidad -- (Elaborar informe de balanceo)
+
+(Realizar comprobante) .> (Verificar cuenta cliente ): <<Include>>
+(Realizar comprobante) .> (Verificar  cliente ): <<Include>>
+(Realizar comprobante) <.-(Modificar cuenta cliente): <<Extend>>
+(Realizar comprobante) <.- (Eliminar cuenta cliente): <<Extend>>
+(Realizar comprobante)<.-(Insertar cuenta cliente): <<Extend>>
+
+
+Encargado_contabilidad -- (Balancear Cuentas): <<Include>>
+
+
+
+@enduml

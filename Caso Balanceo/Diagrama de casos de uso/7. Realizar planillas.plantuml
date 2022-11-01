@@ -1,0 +1,16 @@
+@startuml 7. Realizar planillas
+actor Encargado_de_caja
+actor Mensajero
+Encargado_de_caja - Mensajero
+Encargado_de_caja -- (Realizar planillas)
+
+(Realizar planillas)-.> (Verificar cliente): <<Include>>
+(Realizar planillas)-.> (Verificar banco): <<Include>>
+(Realizar planillas)-.> (Verificar planilla): <<Include>>
+(Realizar planillas)-.> (Verificar cuenta empresa): <<Include>>
+(Realizar planillas)-.> (RRHH): <<Include>>
+(Realizar planillas)<.- (Insertar planilla): <<Extend>>
+(Realizar planillas)<.- (Modificar planilla): <<Extend>>
+(Realizar planillas)<.- (Eliminar planilla): <<Extend>>
+
+@enduml

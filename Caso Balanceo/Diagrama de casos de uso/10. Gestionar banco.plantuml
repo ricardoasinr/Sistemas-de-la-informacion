@@ -1,0 +1,11 @@
+@startuml 10_Gestionar_banco
+actor Encargado_de_contabilidad
+
+Encargado_de_contabilidad -- (Gestionar banco)
+
+(Gestionar banco)-.> (Verificar banco): <<Include>>
+(Gestionar banco)<.- (Insertar banco): <<Extend>>
+(Gestionar banco)<.- (Modificar banco): <<Extend>>
+(Gestionar banco)<.- (Eliminar banco): <<Extend>>
+
+@enduml

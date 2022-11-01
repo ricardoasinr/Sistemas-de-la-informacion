@@ -1,0 +1,24 @@
+@startuml 6. Gestionar facturas
+actor Encargado_de_caja
+actor Mensajero
+actor Encargado_de_venta
+actor Cliente
+
+Encargado_de_caja <- Mensajero
+Encargado_de_caja <- Cliente
+
+
+Encargado_de_caja -- (Realizar factura)
+Encargado_de_venta -- (Realizar factura)
+
+
+(Realizar factura)-.> (Verificar cliente): <<Include>>
+(Realizar factura)-.> (Verificar factura): <<Include>>
+(Realizar factura)-.> (Verificar producto): <<Include>>
+(Realizar factura)-.> (Verificar RRHH): <<Include>>
+(Realizar factura)-.> (RRHH): <<Include>>
+(Realizar factura)<.- (Insertar factura): <<Extend>>
+(Realizar factura)<.- (Modificar factura): <<Extend>>
+(Realizar factura)<.- (Eliminar factura): <<Extend>>
+
+@enduml

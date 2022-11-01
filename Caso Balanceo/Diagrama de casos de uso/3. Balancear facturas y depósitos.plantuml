@@ -1,0 +1,12 @@
+@startuml 3. Balancear Facturas y depósitos
+
+actor Encargado_de_contabilidad
+
+
+
+Encargado_de_contabilidad -- (Balancear Facturas y depósitos)
+
+
+
+
+@enduml

@@ -1,0 +1,13 @@
+@startuml 9. Gestionar producto
+actor Encargado_de_venta
+
+
+Encargado_de_venta -- (Gestionar producto)
+
+(Gestionar producto)-.> (Verificar producto): <<Include>>
+
+(Gestionar producto)<.- (Insertar producto): <<Extend>>
+(Gestionar producto)<.- (Modificar producto): <<Extend>>
+(Gestionar producto)<.- (Eliminar producto): <<Extend>>
+
+@enduml

@@ -1,0 +1,11 @@
+@startuml 1. Gestionar clientes
+actor Encargado_de_venta
+actor Cliente
+Encargado_de_venta -- (Gestionar clientes) 
+Encargado_de_venta <- Cliente
+(Gestionar clientes) .> (Verificar Cliente): <<Include>>
+(Gestionar clientes) <.-(Modificar cliente): <<Extend>>
+(Gestionar clientes) <.- (Eliminar cliente): <<Extend>>
+(Gestionar clientes)<.-(Insertar cliente): <<Extend>>
+
+@enduml
