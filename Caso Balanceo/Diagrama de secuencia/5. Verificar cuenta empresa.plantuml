@@ -1,0 +1,22 @@
+@startuml 5. Verificar cuenta empresa
+
+actor Encargado_de_contabilidad
+
+
+Encargado_de_contabilidad -> ":FormCuenta": Introducir(Cuenta, Banco)
+
+
+":FormCuenta" -> "Control cuenta": Verificar(Cuenta, Banco)
+":FormCuenta" -> "Control cuenta": Guardar(Cuenta) 
+
+"Control cuenta" -> "Cuenta": Verificar(Cuenta)
+"Control cuenta" -> "Banco": Verificar(Banco) 
+"Control cuenta" -> "Banco": Registrar(Cuenta) 
+
+"Banco" --> ":FormCuenta": Existe(Cuenta, Banco) No existe 
+"Banco" --> ":FormCuenta": GuardarCuenta
+
+
+
+
+@enduml

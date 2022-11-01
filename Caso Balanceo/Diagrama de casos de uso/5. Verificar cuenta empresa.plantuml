@@ -7,8 +7,6 @@ Encargado_de_contabilidad -- (Gestionar cuenta empresa)
 (Gestionar cuenta empresa) -.> (Verificar cuenta empresa): <<Include>>
 (Gestionar cuenta empresa) -.> (Verificar banco): <<Include>>
 
-(Gestionar producto)<.- (Insertar cuenta empresa): <<Extend>>
-(Gestionar producto)<.- (Modificar cuenta empresa): <<Extend>>
-(Gestionar producto)<.- (Eliminar cuenta empresa): <<Extend>>
+
 
 @enduml

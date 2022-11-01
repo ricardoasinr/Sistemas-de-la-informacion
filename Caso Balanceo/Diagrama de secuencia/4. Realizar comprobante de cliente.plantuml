@@ -1,0 +1,23 @@
+@startuml 4. Realizar comprobante de cliente
+
+actor Encargado_de_contabilidad
+
+
+Encargado_de_contabilidad -> ":FormCuenta": CrearCuenta(Cuenta, Cliente)
+
+Encargado_de_contabilidad -> ":FormCuenta": GuardarCuenta() 
+
+":FormCuenta" -> "Registro contable": CrearCuenta(Cuenta, Cliente)
+":FormCuenta" -> "Registro contable": GuardarCuenta() 
+
+"Registro contable" -> ":Cliente": Verifica Cliente(Ci, Name, LastName) 
+
+"Registro contable" -> ":CuentaCliente": VerificarCuenta(Cuenta) 
+
+":CuentaCliente"--> "Registro contable" : VerificarCuenta(Cuenta): NoExiste
+"Registro contable" -> ":CuentaCliente": RegistrarCuenta(Cuenta) 
+
+":CuentaCliente"--> ":FormCuenta" : CuentaCreada()
+
+
+@enduml

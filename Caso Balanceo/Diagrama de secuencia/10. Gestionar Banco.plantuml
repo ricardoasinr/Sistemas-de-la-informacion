@@ -1,0 +1,21 @@
+@startuml 10. Gestionar Banco
+
+actor Encargado_de_contabilidad
+
+
+Encargado_de_contabilidad -> ":FormBanco": IntroduceInformación(Banco)
+
+Encargado_de_contabilidad -> ":FormBanco": GuardarBanco() 
+
+":FormBanco" -> "Controlador Banco": VerificaInformación(Banco)
+":FormBanco" -> "Controlador Banco": GuardarBanco() 
+
+"Controlador Banco" -> "Banco": VerificaBanco(Banco)
+
+"Controlador Banco" -> "Banco": Registrar(Banco)
+
+"Banco"--> ":FormBanco" : BancoNoExiste():No Existe
+"Banco"--> ":FormBanco" : BancoCreado()
+
+
+@enduml

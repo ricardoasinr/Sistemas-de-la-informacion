@@ -1,22 +1,25 @@
-@startuml 8. Elaborar informe de balanceo
+@startuml 8. Elaborar informe de balanceoCorregido
 
 actor Encargado_de_contabilidad
 
 
-Encargado_de_contabilidad -> "Realizar informe de balanceo" 
+Encargado_de_contabilidad -> ":Reporte" 
 
 
-"Realizar informe de balanceo" -> "Mensajero": Verifica mensajero
-"Realizar informe de balanceo" -> "Factura": Verifica factura 
+":Reporte" -> ":Mensajero": BuscaInformación(Mensajero)
+":Reporte" -> ":Mensajero": BuscaFacturas(Mensajero)
 
 
-"Mensajero"--> "Realizar informe de balanceo" : Existe mensajero
-"Mensajero" -> "Planilla": Verifica deposito del mensajero 
-"Planilla" --> "Mensajero": Deposito correcto
-"Planilla" --> "Factura": Verifica saldo
+":Mensajero" -> "Controlador de Balanceo": Envia Facturas e información del mensajero
 
-"Planilla"--> "Realizar informe de balanceo" : Balanceo correcto
+"Controlador de Balanceo" -> "Facturas":Se suman todas las facturas
+"Facturas" -> "Plantillas":Busca todas las plantillas
+"Facturas" -> "Plantillas":Se suman todas las plantillas
 
-"Factura"--> "Realizar informe de balanceo" : Existe factura
+"Plantillas" -> "Controlador de Balanceo":Verifica el sumatorio de todas las facturas
+"Controlador de Balanceo" -> ":Reporte": Si son iguales se balancea
+
+
+
 
 @enduml

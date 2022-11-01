@@ -1,0 +1,10 @@
+@startuml 4. Realizar comprobante de cliente
+actor Encargado_de_contabilidad
+
+
+Encargado_de_contabilidad -- (Realizar comprobante de cliente)
+(Realizar comprobante de cliente) -.> (Verificar Cliente): <<Include>>
+
+
+
+@enduml
