@@ -1,0 +1,276 @@
+Ejercicio práctico de Balanceo.
+
+El objetivo de este pequeño sistema es lograr que se obtenga la información para balancear las cuentas que trabajan los mensajeros para ello se solicita al personal que determine los subsistemas, los procesos, las entradas y salidas del sistema realizando ajustes a los siguientes requerimientos. 
+ 
+
+El departamento de caja recibe de los mensajeros copia de las facturas que han sido canceladas por los clientes, las copias de las plantillas de depósito de cada uno de los bancos en que los mensajeros depositaron el efectivo y cheques recibidos como pago de los clientes. Las facturas y los depósitos se balancean con el fin de verificar que el monto cobrado coincide con el monto depositado; se acredita el monto pagado a la cuenta de cada cliente y se prepara el comprobante de contabilidad que permitirá registrar el ingreso a bancos. Las unidades administran las diferentes transacciones: Recursos humanos tiene la información de los mensajeros, Ventas tiene la información de los clientes y contabilidad gestiona las transacciones de caja.
+
+Estos formularios se desarrollaron por el departamento de calidad y planilla del banco con el banco.
+
+FACTURA EM	Número Factura:1234
+	Fecha Factura: 8/02/2021
+Cliente:01	
+Nombre: Sebastián Moreno 	
+Nit:353535	
+Nombre del Nit: PLASMAR SRL.	
+Producto	Descripción	Cantidad	Precio	Total cant*precio
+644	Cintas	100	2	200
+555	Tintas	50	4	200
+			Monto factura	400
+				
+	Juan			
+	FIRMA y Nombre MENSAJERO 			
+
+FACTURA EM	Número Factura:1235
+	Fecha Factura: 8/02/2021
+Cliente:02	
+Nombre: Carlos Guna 	
+Nit:888888	
+Nombre del Nit: Carlos Guna	
+Producto	Descripción	Cantidad	Precio	Total cant*precio
+666	Puertas	1	400	400
+555	Tintas	50	4	200
+			Monto factura	600
+				
+	Juan			
+	FIRMA y Nombre MENSAJERO 			
+
+
+
+
+Planillas de depósitos                     Número:345	
+Fecha-hora 8 de febrero 2021, 12:00:02	
+Número de cuenta bancaria; 987654 3 BNB	
+Depositante:JUAN	Cliente
+Nombre Banco	Monto	
+RRR	400	01
+TYY	600	02
+ Deposito Efectivo	0	
+Total depósito	1000	
+
+Informe de balanceo: 
+
+Nombre del mensajero	Facturas	Monto factura	Nro. Depósito	Banco	Nro. cuenta	Ingreso	Resultado
+Juan	1234	400					
+Juan	1235	600					
+Juan	Total	1000	345	BNB	987654 3	1000	
+Juan	1236	100					
+Juan	1237	50					
+Juan	Total	150	432	BMS	678910	100	
+Juan		1150				1100	No balancea
+Pedro	2	200					
+Pedro	13	100					
+Pedro	Total	300	34567	BNB	987654 3	300	
+Pedro	22	500					
+Pedro	34	200					
+Pedro	Total	700	78432	BMS	678910	700	
+Pedro		1000				1000	Balancea
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Caso de Uso Detallado
+
+Caso de Uso #1 – Gestionar Cliente
+Actores: Encargado de Ventas(Primario), Cliente(Primario)
+Tipo: Primario.
+Propósito: Tener información del cliente.
+Resumen: El encargado de ventas almacena la información de los clientes (Nombre, apellido, dirección, teléfono, NIT, Nombre del NIT, Carnet de Identidad), verifica si el cliente existe, en todo caso puede modificar o eliminar al cliente, si el cliente no existe crea y registra un nuevo cliente.
+Precondición: El encargado de venta tenga acceso al sistema
+Cuso Básico: 
+Actor	Sistema
+1.	El encargado de ventas va a introducir carnet de identidad, nombre, apellido, dirección, teléfono, NIT, Nombre del NIT
+3.	El actor guarda la información del cliente	2.	Verifica que no exista el carnet de identidad y nombre y apellido
+4.	El sistema genera el número de cliente y guarda la información
+
+Camino Alternativo:
+Paso 2: Si existe carnet de identidad y nombre y apellido, se muestra la dirección que falta y se sale del sistema o se procede a eliminar al cliente (siempre y cuando no haya transacciones asociadas a él) o se procede a modificar la información del cliente (nombre y apellido, NIT, teléfono y dirección).
+Poscondición: Se crea al cliente o si no se hace nada se sale del sistema.
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Caso de Uso #2 – Gestionar RRHH
+Actores: Encargado de RRHH (Primario)
+Tipo: Primario.
+Propósito: Obtener la información de los mensajeros.
+Resumen: Se encarga de administrar la información de los mensajeros (CI, nombre, apellido, teléfono y cargo), crear, modificar y/o eliminar si es necesario.
+Precondición: El encargado de RRHH tenga acceso al sistema.
+Cuso Básico: 
+Actor	Sistema
+1.	El encargado de RRHH va a introducir carnet de identidad, nombre, apellido, dirección, teléfono.
+3.	Se introduce el cargo.
+5.	Se guarda la información del empleado.	2.	Verifica que no exista el carnet de identidad y nombre y apellido.
+4.	Se verifica que el cargo exista.
+6.	Se genera el número del empleado y se almacena la información.
+
+Camino Alternativo:
+Paso 2: Si existe CI, Nombre y apellido se muestra la información del sistema.
+Paso 4: Si existe se sale del sistema y se procede a crear el cargo en otro lado.
+Poscondición: Se crea al mensajero o si no se hace nada se sale del sistema.
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+Caso de Uso #3 – Balancear facturas y depósitos
+Actores: Encargado de Contabilidad (Primario)
+Tipo: Primario.
+Propósito: Realizar el balanceo de facturas y depósitos para acreditar cuentas de comprobantes contables.
+Resumen: Se leen las facturas y los depósitos y se procede a verificar que los montos coincidan y se acreditan las cuentas contables, las facturas del cliente y los comprobantes que registran el ingreso a bancos.
+Precondición: El encargado de Contabilidad tenga acceso al sistema.
+Cuso Básico: 
+Actor	Sistema
+1.	El encargado de contabilidad procede a balancear.	2.	El sistema busca la información del mensajero (nombre, apellido, CI)
+3.	Se busca todas las facturas que entrego el mensajero.
+4.	Se sumarizan todas las facturas.
+5.	Se busca todas las planillas de depósito elaboradas por el mensajero
+6.	Se sumarizan todas las planillas de deposito
+7.	Verifica que el sumatorio total de las facturas coincida con el sumatorio total de las planillas de depósito hechas por el mensajero.
+8.	Si son iguales se indica Balancea.
+Si no son iguales se indica No Balancea.
+
+Camino Alternativo: No hay
+Poscondición: Se realizó el balanceo
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Caso de Uso #4 – Realizar comprobante cliente
+Actores: Encargado de Contabilidad (Primario), cliente (Secundario)
+Tipo: Secundario.
+Propósito: Tener información del cliente.
+Resumen: El encargado de contabilidad crea la cuenta contable del cliente para realizar el comprobante.
+Precondición: El encargado de Contabilidad tenga acceso al sistema.
+Cuso Básico: 
+Actor	Sistema
+1.	El encargado de contabilidad introduce la cuenta del cliente.
+3.	El actor guarda la información de la cuenta del cliente	2.	Verifica que no exista el carnet de identidad y nombre y apellido
+4.	El sistema genera el número de la cuenta del cliente y guarda la información de la cuenta del cliente.
+
+Camino Alternativo:
+Paso 2: Si existe cuenta cliente se muestra la información y sale del sistema o se procede a eliminar la cuenta del cliente se muestra la información y sale del sistema o se procede a eliminar la cuenta del cliente o se procede a modificar la información de la cuenta cliente.
+Poscondición: Se crea la cuenta al cliente o si no se hace nada se sale del sistema.
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Caso de Uso #5 – Gestionar cuentas de empresa
+Actores: Encargado de Contabilidad (Primario)
+Tipo: Primario.
+Propósito: Adicionar y eliminar número de cuenta y nombre del banco.
+Resumen: En este apartado se podrá incorporar el número de cuenta de la empresa. Se podrá adicionar y eliminar números de cuentas bancarias.
+Precondición: El encargado de Contabilidad tenga acceso al sistema.
+Cuso Básico: 
+Actor	Sistema
+1.	El encargado de contabilidad debe introducir los números de cuenta y nombres del banco al sistema.
+3.	El encargado guarda la cuenta.	2.	El sistema verifica que no exista el número de cuenta.
+4.	El sistema genera el número de cuenta y almacena.
+Camino Alternativo:
+Paso 2: Si existe el número de cuenta. Se procede a modificar o eliminar la cuenta del cliente. O se sale del sistema.
+Poscondición: Se crea el número de cuenta o se elimina o se sale del sistema.
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Caso de Uso #6 – Realizar factura.
+Actores: Encargado de caja (Primario), Encargado de Venta (Primario), Cliente (Primario)
+Tipo: Primario.
+Propósito: Elaborar la factura del cliente.
+Resumen: El mensajero llena la información de las facturas, luego lleva las copias de las facturas y se lo entrega al encargado de caja. Cada factura cuenta con el Nro. de Factura, Fecha, información del cliente (nombre, NIT, nombre del NIT), descripción del producto (CodProducto, cantidad, Precio, Total) y por último tiene el nombre y firma del mensajero que lleno la información.
+Precondición: El encargado de Caja tenga acceso al sistema.
+Cuso Básico: 
+Actor	Sistema
+1.	Se introduce el nro. de factura, fecha.
+3.	Se introduce la información del cliente (Nombre, NIT, Nombre del NIT).
+5.	Se introduce la información del producto (CodProducto, Cantidad, Precio, Total).
+7.	Se introduce el código del mensajero.	2.	Verifica que no exista el nro. de factura.
+4.	Verifica que no exista el cliente.
+6.	Verifica que no exista el producto.
+8.	Verifica que no exista el mensajero.
+Camino Alternativo:
+Paso 2: Si existe la factura, se muestra la información y se sale del sistema o se procede a eliminar la factura o se procede a modificar.
+Paso 4: Si no existe el cliente, se sale del sistema o se vuelve a ingresar la información del cliente.
+Paso 6: Si no existe el producto, se sale del sistema o se vuelve a ingresar el producto.
+Paso 8: Si no existe el mensajero se sale del sistema o se vuelve a ingresar el código del mensajero.
+Poscondición: Se crea la factura o se sale del sistema.
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Caso de Uso #7 – Realizar Planillas
+Actores: Encargado de caja (Primario) y mensajero (Primario)
+Tipo: Primario.
+Propósito: Obtener la información para elaborar las planillas de depósitos.
+Resumen: El mensajero se encarga de recoger la información de los depósitos y cheques (Banco cliente, Banco empresa, Cliente, Nro. de planilla, Nro. de cuenta, monto), el encargado de caja se encarga de hacer la planilla de depósito con la información que le da el mensajero.
+Precondición: El encargado de caja tenga acceso al sistema.
+Cuso Básico: 
+Actor	Sistema
+1.	Introduce el número de planilla, fecha, número de cuenta bancaria, Depositante.
+5.	Ingresa monto bs o cheque y nombre del banco del cliente.
+8.	Guarda la planilla	2.	Verifica que la planilla no exista.
+3.	Verifica que la cuenta bancaria de la empresa exista y muestra la información.
+4.	Verifica que el mensajero exista y muestra la información.
+6.	Verifica que el banco exista y muestra información del banco.
+7.	Verifica que el cliente exista asociado al banco.
+9.	Genera número de planilla y guarda la información de la planilla.
+
+Camino Alternativo:
+Paso 2: Si existe la planilla se muestra la información de la planilla, o se modifica la planilla, o se elimina la planilla, o si no se hace nada se sale del sistema.
+Paso 3: Si no existe la cuenta bancaria se muestra una advertencia, se muestra la ventana de creación de cuenta bancaría y se continua con el sistema.
+Paso 4: Si no existe el mensajero, se muestra una advertencia, se abre la ventana de creación de mensajero y se continua con el sistema.
+Paso 6: Si no existe el banco, se muestra una advertencia, se abre la ventana de creación de banco y se continua con el sistema.
+Paso 7: Si no existe el cliente, se muestra una advertencia, se abre la ventana de creación del cliente y se continua con el sistema.
+Paso 9: Si el número de la planilla existe, se procede a verificar, modificar o eliminar la planilla, si no se hace nada se sale del sistema.
+Poscondición: Guarda la información de la planilla.
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Caso de Uso #8 – Elaborar informe de balanceo
+Actor: encargado de contabilidad 
+Tipo: opcional
+Propósito: Informe de balanceo 
+Descripción: El encargado de contabilidad recibe las facturas y depósitos generando el informe del balanceo.
+En el informe se busca desde el sistema el nombre del mensajero que realizo el depósito. También se busca la verificación entre los saldos entre la factura y el depósito sean el mismo. Si son iguales se indica Balancea, si no son iguales se indica No balancea
+Precondición: El encargado de contabilidad 
+Cuso Básico: 
+Actor	Sistema
+1.	El encargado de contabilidad introduce la fecha del reporte  	2.	El sistema busca la información del mensajero (nombre, apellido, CI) 
+3.	Se busca todas las facturas que entrego el mensajero 
+4.	Se sumarizan todas las facturas 
+5.	Se busca todas las planillas de depósito elaboradas por el mensajero 
+6.	Se sumarizan todas las planillas de deposito
+7.	Verifica que el sumatorio total de las facturas coincida con el sumatorio total de las planillas de depósito hechas por el mensajero.
+8.	Si son iguales se indica Balancea. Si no son iguales se indica No balancea.
+Camino Alternativo: No hay.
+Poscondición: Se creó el informe de balanceo o si no se balancea se sale del sistema
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Caso de Uso #9 – Gestionar Producto
+Actores: Encargado de Venta (Primario)
+Tipo: Primario.
+Propósito: Obtener la información para la factura.
+Resumen: El encargado de venta gestiona la información de los productos (código, nombre, precio), para poder condensar toda la información dentro de la factura.
+Precondición: El encargado de Venta tenga acceso al sistema.
+Cuso Básico: 
+Actor	Sistema
+1.	El encargado de ventas va a introducir el código del producto.
+3.	Se introduce nombre del producto y precio.
+4.	Guarda la información.	2.	Verifica que el código no exista.
+5.	El sistema genera el código del producto y se procede a guardar la información de los productos
+
+Camino Alternativo:
+Paso 2: Si existe el producto se modifica o eliminar o se sale del sistema.
+Poscondición: Se crea al producto o se elimina o si no se hace nada se sale del sistema.
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+Caso de Uso #10 – Gestionar Banco
+Actores: Encargado de Contabilidad (Primario)
+Tipo: Opcional.
+Propósito: Obtener la información de los bancos.
+Resumen: Se encarga de administrar la información de los bancos, se puede eliminar, seleccionar y agregar (ciudad, dirección y nombres).
+Precondición: El encargado de Contabilidad tenga acceso al sistema.
+Cuso Básico: 
+Actor	Sistema
+1.	Va a introducir ciudad, dirección, nombre.
+3.	Se guarda la información del banco.	2.	Verifica que no exista el nombre del banco.
+4.	Genera número de código del banco y se guarda la información.
+
+Camino Alternativo:
+Paso 2: Si existe banco se muestra la información y sale del sistema o se genera el banco.
+Poscondición: Se crea al banco o se verifica la información del banco o si no se hace nada se sale del sistema.
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
