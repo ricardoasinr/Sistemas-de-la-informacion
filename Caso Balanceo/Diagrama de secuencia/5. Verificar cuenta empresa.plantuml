@@ -7,13 +7,19 @@ Encargado_de_contabilidad -> ":FormCuenta": Introducir(Cuenta, Banco)
 
 
 ":FormCuenta" -> "Control cuenta": Verificar(Cuenta, Banco)
-":FormCuenta" -> "Control cuenta": Guardar(Cuenta) 
 
 "Control cuenta" -> "Cuenta": Verificar(Cuenta)
 "Control cuenta" -> "Banco": Verificar(Banco) 
-"Control cuenta" -> "Banco": Registrar(Cuenta) 
 
 "Banco" --> ":FormCuenta": Existe(Cuenta, Banco) No existe 
+
+
+":FormCuenta" -> "Control cuenta": Guardar(Cuenta) 
+
+
+"Control cuenta" -> "Banco": Registrar(Cuenta) 
+
+
 "Banco" --> ":FormCuenta": GuardarCuenta
 
 
