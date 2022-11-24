@@ -3,25 +3,43 @@
 actor Encargado_de_caja
 
 Encargado_de_caja -> ":FormPlanilla": Introducir(NroPlanilla, fecha, \n NroCuenta, Depositante)
-Encargado_de_caja -> ":FormPlanilla": Introducir(Monto, BancoCliente)
-Encargado_de_caja -> ":FormPlanilla": GuardarPlanilla
-
 ":FormPlanilla" -> "Control planilla": Verificar(Planilla)
+"Control planilla" -> "Planilla": Verificar planilla
+
+"Planilla" --> "Control planilla": Nro Planilla no existe
+
+"Control planilla" -> "Cuenta empresa": VerificarCuentaEmpresa()
+"Control planilla" -> "Mensajero": VerificarMensajero()
+Encargado_de_caja -> ":FormPlanilla": Introducir(Monto, BancoCliente)
 
 ":FormPlanilla" -> "Control planilla": Verificar(Monto, Banco cliente)
+"Control planilla" -> "Banco": Verificar banco
+"Control planilla" -> "Cliente": VerificarCliente()
+"Cliente" --> "Control planilla": Cliente Asociado al banco
 
+
+Encargado_de_caja -> ":FormPlanilla": GuardarPlanilla
 ":FormPlanilla" -> "Control planilla": Guardar Planilla
-
-"Control planilla" -> "Planilla": Verificar planilla
-"Planilla" --> "Control planilla": Nro Planilla no existe
 "Control planilla" -> "Planilla": Registrar planilla
 "Planilla" --> "Control planilla": Planilla registrada
 
-"Control planilla" -> "Banco": Verificar banco
-"Control planilla" -> "Cuenta empresa": VerificarCuentaEmpresa()
-"Control planilla" -> "Mensajero": VerificarMensajero()
-"Control planilla" -> "Cliente": VerificarCliente()
-"Cliente" --> "Control planilla": Cliente Asociado al banco
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
