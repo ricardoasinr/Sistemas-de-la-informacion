@@ -1,0 +1,51 @@
+@startuml Paquete tercer nivel Contabilidad Planilla
+
+
+
+
+
+folder "Paquete Contabilidad::Planilla" {
+
+class Planilla {
+  Int nroPlanilla
+  Date fecha
+  {abstract} bool Buscar(codCliente): return Encontrado
+  {abstract} bool Buscar(nroCuentaEmpresa): return Encontrado
+  {abstract} bool Buscar(nrocuentaBanco): return Encontrado
+  {abstract} bool Buscar(nroPlanilla): return Encontrado
+  {abstract} void Registrar(Planilla) 
+  {abstract} void Modificar(Planilla) 
+  {abstract} void Eliminar(Planilla)
+}
+class DetallePlanilla {
+  Int codBanco
+  Long int Monto
+  {abstract} bool Buscar(codBanco): return Encontrado
+  {abstract} bool Buscar(codCliente): return Encontrado
+  {abstract} bool Buscar(nroPlanilla, Cliente): return Encontrado
+  {abstract} bool Buscar(nroPlanilla): return Encontrado
+  {abstract} void Registrar(CuentaBanco) 
+  {abstract} void Modificar(CuentaBanco) 
+  {abstract} void Eliminar(CuentaBanco)
+ 
+}
+
+
+
+
+
+Planilla "0..*" -- "0..*" Contabilidad::Cuenta::Banco
+Planilla "1" -up- "0..*" Contabilidad::Cuenta::CuentaEmpresa
+Planilla "0..*" -- "1" RRHH::Empleados
+Planilla "1..*" -down- "0..*" Facturacion::cliente
+Planilla "0" -- "1" DetallePlanilla
+
+
+  }
+
+
+
+
+
+
+@endluml

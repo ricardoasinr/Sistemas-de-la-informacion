@@ -1,0 +1,21 @@
+@startuml 2do Nivel
+
+
+package Contabilidad::Planilla {
+ 
+  [Planilla]
+}
+
+package Contabilidad::Cuenta {
+ 
+  [Cuenta]
+}
+
+
+
+
+[Cuenta] .-left->[Planilla] :"Acceso"
+
+
+
+@enduml

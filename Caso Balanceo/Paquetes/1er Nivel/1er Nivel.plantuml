@@ -1,0 +1,25 @@
+@startuml 1er Nivel
+
+
+package Paquete_RRHH {
+ 
+  [RRHH]
+}
+package Contabilidad {
+ 
+  [Contabilidad.]
+}
+package Facturación {
+ 
+  [Facturación.]
+}
+
+
+
+
+[Contabilidad.] .-left->[RRHH] :"Acceso"
+[Facturación.] .-up->[RRHH] :"Acceso"
+[Contabilidad.] .-down-> [Facturación.]:"Acceso"
+
+
+@enduml

@@ -1,0 +1,44 @@
+@startuml 8. Elaborar informe de balanceo
+
+actor Encargado_de_contabilidad
+
+
+Encargado_de_contabilidad -> [Reporte]: 1.Introducir fecha
+[Reporte] --> [Controlador reporte]: 2.BuscarInformación
+[Reporte] --> [Controlador reporte]: 3.BuscarFacturas
+
+[Controlador reporte] --> [Mensajero]: 4.Buscar mensajero
+[Controlador reporte] --> [Facturas]: 5.Buscar facturas
+
+[Controlador reporte] -> [Controlador reporte]: 6.Monto Factura
+
+
+[Controlador reporte] --> [Planillas]: 7.Buscar planillas
+[Controlador reporte] --> [Controlador reporte]: 8.Monto Planillas
+
+
+
+[Controlador reporte] --> [Cuentea empresa]: 9.Buscar cuenta empresa
+[Controlador reporte] --> [Banco]: 10.Buscar Banco
+
+[Controlador reporte] --> [Reporte]: 11.Reporte balanceo
+
+
+
+'":Reporte" -> ":Controladora reporte": BuscaInformación(Mensajero)
+'":Reporte" -> ":Controladora reporte": BuscaFacturas(Mensajero)
+
+'":Controladora reporte" -> "Mensajero": Buscar mensajero
+'":Controladora reporte" -> "Facturas": Buscar facturas
+'":Controladora reporte" --> ":Controladora reporte": Devolver Monto factura
+
+'":Controladora reporte" -> "Planillas": Buscar planillas
+'":Controladora reporte" --> ":Controladora reporte": Devolver Monto planilla
+
+'":Controladora reporte"-> "Cuenta empresa" : Buscar cuenta empresa
+'":Controladora reporte" -> "Banco": Buscar banco
+
+'":Controladora reporte" --> ":Reporte" : Reporte balanceo
+
+
+@enduml

@@ -1,0 +1,24 @@
+@startuml Paquete Casos de uso Ventas
+
+(Gestionar clientes) .> (Verificar Cliente): <<Include>>
+(Gestionar clientes) <.-(Modificar cliente): <<Extend>>
+(Gestionar clientes) <.- (Eliminar cliente): <<Extend>>
+(Gestionar clientes)<.-(Insertar cliente): <<Extend>>
+(Gestionar producto)-.> (Verificar producto): <<Include>>
+(Gestionar producto)<.- (Insertar producto): <<Extend>>
+(Gestionar producto)<.- (Modificar producto): <<Extend>>
+(Gestionar producto)<.- (Eliminar producto): <<Extend>>
+
+folder "Paquete Ventas" {
+
+[Ventas]
+
+  }
+
+  [Ventas] -- (Gestionar clientes)
+  [Ventas] -- (Gestionar producto)
+
+
+
+
+@endluml

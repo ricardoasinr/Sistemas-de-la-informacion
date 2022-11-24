@@ -3,23 +3,23 @@
 actor Encargado_de_contabilidad
 
 
-Encargado_de_contabilidad -> ":Reporte" 
+Encargado_de_contabilidad -> ":Reporte" : Introduce fecha
 
 
-":Reporte" -> ":Mensajero": BuscaInformación(Mensajero)
-":Reporte" -> ":Mensajero": BuscaFacturas(Mensajero)
+":Reporte" -> ":Controladora reporte": BuscaInformación(Mensajero)
+":Reporte" -> ":Controladora reporte": BuscaFacturas(Mensajero)
 
+":Controladora reporte" -> "Mensajero": Buscar mensajero
+":Controladora reporte" -> "Facturas": Buscar facturas
+":Controladora reporte" --> ":Controladora reporte": Devolver Monto factura
 
-":Mensajero" -> "Controlador de Balanceo": Envia Facturas e información del mensajero
+":Controladora reporte" -> "Planillas": Buscar planillas
+":Controladora reporte" --> ":Controladora reporte": Devolver Monto planilla
 
-"Controlador de Balanceo" -> "Facturas":Se suman todas las facturas
-"Facturas" -> "Plantillas":Busca todas las plantillas
-"Facturas" -> "Plantillas":Se suman todas las plantillas
+":Controladora reporte"-> "Cuenta empresa" : Buscar cuenta empresa
+":Controladora reporte" -> "Banco": Buscar banco
 
-"Plantillas" -> "Controlador de Balanceo":Verifica el sumatorio de todas las facturas
-"Controlador de Balanceo" -> ":Reporte": Si son iguales se balancea
-
-
+":Controladora reporte" --> ":Reporte" : Reporte balanceo
 
 
 @enduml

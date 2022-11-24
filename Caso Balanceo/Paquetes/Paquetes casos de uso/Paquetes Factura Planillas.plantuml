@@ -1,0 +1,26 @@
+@startuml Paquetes Casos de uso Factura/Planillas
+
+folder "Contable" {
+package  {
+ 
+  [Factura/Planillas]
+}
+package  {
+ 
+  [Balanceo]
+}
+package  {
+ 
+  [Comprobantes]
+}
+  }
+
+
+
+
+[Balanceo] .-right->[Factura/Planillas] :"Importar"
+[Factura/Planillas] .-down->[Comprobantes] :"Acceso"
+[Balanceo] .-up-> [Comprobantes]:"Importar"
+
+
+@enduml

@@ -1,0 +1,154 @@
+@startuml Clases
+class Cliente {
+  String codCliente
+  String nombre
+  String apellido
+  String CI
+  String dirección
+  long int NIT 
+  String Nombre Nit
+  String teléfono
+
+  {abstract} bool Buscar(codCliente): return Encontrado
+  {abstract} void Registrar(Cliente) 
+  {abstract} void Modificar(Cliente) 
+  {abstract} void Eliminar(Cliente)
+}
+
+class Factura {
+  String nroFactura
+  Date fecha
+  long int Monto_Factura
+
+  {abstract} bool Buscar(nroFactura): return Encontrado
+  {abstract} void Registrar(Factura) 
+  {abstract} void Modificar(Factura) 
+  {abstract} void Eliminar(Factura)
+}
+
+class DetalleFactura {
+  Float cantidad
+  Float precio
+
+  {abstract} bool Buscar(CodProducto): return Encontrado
+  {abstract} bool Buscar(nroFactura): return Encontrado
+  {abstract} bool Buscar(Factura, Producto): return Encontrado
+  {abstract} void Registrar(Factura) 
+  {abstract} void Modificar(Factura) 
+  {abstract} void Eliminar(Factura)
+}
+
+class Producto {
+  String nombre
+  String apellido
+  long int precio
+  float cantidadExistencia
+
+  {abstract} bool Buscar(codProducto): return Encontrado
+  {abstract} void Registrar(Producto) 
+  {abstract} void Modificar(Producto) 
+  {abstract} void Eliminar(Producto)
+}
+
+class Empleado {
+  Int codEmpleado
+  String descripcion
+  String CI
+  String dirección
+  String teléfono
+
+  {abstract} bool Buscar(codEmpleado): return Encontrado
+  {abstract} void Registrar(Empleado) 
+  {abstract} void Modificar(Empleado) 
+  {abstract} void Eliminar(Empleado)
+}
+
+class Planilla {
+  Int nroPlanilla
+  Date fecha
+  {abstract} bool Buscar(codCliente): return Encontrado
+  {abstract} bool Buscar(nroCuentaEmpresa): return Encontrado
+  {abstract} bool Buscar(nrocuentaBanco): return Encontrado
+  {abstract} bool Buscar(nroPlanilla): return Encontrado
+  {abstract} void Registrar(Planilla) 
+  {abstract} void Modificar(Planilla) 
+  {abstract} void Eliminar(Planilla)
+}
+
+class CuentaEmpresa {
+  Int nroCuentaEmpresa
+  Float monto 
+  {abstract} bool Buscar(nroCuentaEmpresa): return Encontrado
+  {abstract} void Registrar(CuentaEmpresa) 
+  {abstract} void Modificar(CuentaEmpresa) 
+  {abstract} void Eliminar(CuentaEmpresa)
+}
+
+class CuentaCliente {
+  Int nroCuentaCliente
+  String descripcion 
+  Float Monto
+  {abstract} bool Buscar(nroCuentaCliente): return Encontrado
+  {abstract} void Registrar(CuentaCliente) 
+  {abstract} void Modificar(CuentaCliente) 
+  {abstract} void Eliminar(CuentaCliente)
+}
+
+
+
+
+class Banco {
+  Int nroCuentaBanco
+  String nombre
+   {abstract} bool Buscar(nroCuentaBanco): return Encontrado
+  {abstract} void Registrar(Banco) 
+  {abstract} void Modificar(Banco) 
+  {abstract} void Eliminar(Banco)
+ 
+}
+
+class DetallePlanilla {
+  Int codBanco
+  Long int Monto
+  {abstract} bool Buscar(codBanco): return Encontrado
+  {abstract} bool Buscar(codCliente): return Encontrado
+  {abstract} bool Buscar(nroPlanilla, Cliente): return Encontrado
+  {abstract} bool Buscar(nroPlanilla): return Encontrado
+  {abstract} void Registrar(CuentaBanco) 
+  {abstract} void Modificar(CuentaBanco) 
+  {abstract} void Eliminar(CuentaBanco)
+ 
+}
+
+class Cargo {
+  Int codCargo
+  String nombre
+
+  {abstract} bool Buscar(codCargo): return Encontrado
+  {abstract} void Registrar(Cargo) 
+  {abstract} void Modificar(Cargo) 
+  {abstract} void Eliminar(Cargo)
+}
+
+Cliente "1" -left "0..*" Factura 
+Factura "0..*" -- "1" Empleado
+Factura "1..*" -up- "0..*" Producto 
+(Factura, Producto) .. DetalleFactura
+
+Planilla "0..*" -- "1..*" CuentaEmpresa
+Planilla "0..*" - "1..*" Empleado
+Planilla "0..*" -right- "0..*" Cliente
+CuentaEmpresa "0..*" -- "1" Banco
+
+(Planilla, Cliente) .. DetallePlanilla
+
+DetallePlanilla "0..*" -- "1..*" Banco
+
+Cliente "1" -down- "0..* "CuentaCliente
+
+CuentaCliente "0..*" -- "1..*" Banco
+Empleado "0..*" -- "1.." Cargo
+
+
+
+@enduml

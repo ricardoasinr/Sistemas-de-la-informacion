@@ -1,0 +1,28 @@
+@startuml 6. Gestionar facturas
+
+actor Encargado_de_caja
+actor Mensajero
+
+Mensajero -> Encargado_de_caja
+
+Encargado_de_caja -> ":FormFactura": Introducir(Cod Factura, cliente, \n producto, mensajero)
+Encargado_de_caja -> ":FormFactura": Guardar(Factura)
+
+
+
+":FormFactura" -> "Control factura": Verificar(Cod Factura, cliente, \n producto, mensajero)
+":FormFactura" -> "Control factura": Guardar(Factura)
+
+"Control factura" -> "Factura": Verificar(Factura)
+"Control factura" -> "Factura": Registrar(Factura)
+"Control factura" -> "Cliente": Verificar(Cliente)
+"Control factura" -> "Producto": Verificar(Producto)
+"Control factura" -> ":Mensajero": Verificar(Mensajero)
+":Mensajero" --> ":FormFactura" : Existe(Cod Factura, cliente, producto, mensajero): No existe
+"Factura" --> ":FormFactura" : Factura registrada
+
+
+
+
+
+@enduml

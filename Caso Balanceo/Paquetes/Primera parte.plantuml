@@ -1,0 +1,44 @@
+
+@startuml Paquetes primera parte
+package "Paquete contable" {
+    [Contable]
+  
+  
+}
+
+note right of [Contable]
+  [Bancos]
+  [Cuentas clientes]
+  [Cuentas empresas]
+  [Planillas]
+  [Factura]
+  [Balanceo]
+  [Reporte balanceo]
+end note
+
+
+
+package "Paquete Ventas" {
+    [Ventas]
+
+ 
+  
+}
+
+note right of [Ventas]
+  [Producto]
+  [Clientes]
+end note
+
+
+package "Paquete RRHH" {
+ 
+  [Recursos humanos]
+}
+
+note right of [Recursos humanos]
+  Recursos humanos
+  
+end note
+
+@enduml

@@ -1,0 +1,38 @@
+@startuml Paquete Casos de uso Contable::Comprobantes
+
+(Realizar factura)-.> (Verificar cliente): <<Include>>
+(Realizar factura)-.> (Verificar factura): <<Include>>
+(Realizar factura)-.> (Verificar producto): <<Include>>
+(Realizar factura)-.> (Verificar RRHH): <<Include>>
+(Realizar factura)-.> (RRHH): <<Include>>
+(Realizar factura)<.- (Insertar factura): <<Extend>>
+(Realizar factura)<.- (Modificar factura): <<Extend>>
+(Realizar factura)<.- (Eliminar factura): <<Extend>>
+(Realizar planillas)-.> (Verificar cliente): <<Include>>
+(Realizar planillas)-.> (Verificar banco): <<Include>>
+(Realizar planillas)-.> (Verificar planilla): <<Include>>
+(Realizar planillas)-.> (Verificar cuenta empresa): <<Include>>
+(Realizar planillas)-.> (RRHH): <<Include>>
+(Realizar planillas)<.- (Insertar planilla): <<Extend>>
+(Realizar planillas)<.- (Modificar planilla): <<Extend>>
+(Realizar planillas)<.- (Eliminar planilla): <<Extend>>
+
+(Gestionar banco)-.> (Verificar banco): <<Include>>
+(Gestionar banco)<.- (Insertar banco): <<Extend>>
+(Gestionar banco)<.- (Modificar banco): <<Extend>>
+(Gestionar banco)<.- (Eliminar banco): <<Extend>>
+
+folder "Paquete Contable::Comprobantes" {
+
+[Contable::Comprobantes]
+
+  }
+
+  [Contable::Comprobantes] -- (Realizar factura)
+  [Contable::Comprobantes] -- (Realizar planillas)
+  [Contable::Comprobantes] -- (Gestionar banco)
+
+
+
+
+@endluml

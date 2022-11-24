@@ -1,0 +1,25 @@
+@startuml Paquete Casos de uso RRHH
+
+(Gestionar RRHH).> (Verificar empleado): <<Include>>
+(Gestionar RRHH).> (Verificar cargo): <<Include>>
+(Gestionar RRHH)<.- (Insertar empleado): <<Extend>>
+(Gestionar RRHH)<.- (Modificar empleado): <<Extend>>
+(Gestionar RRHH)<.- (Eliminar empleado): <<Extend>>
+(Gestionar cargo)-.> (Verificar cargo): <<Include>>
+(Gestionar cargo)<.- (Registrar cargo): <<Extend>>
+(Gestionar cargo)<.- (Modificar cargo): <<Extend>>
+(Gestionar cargo)<.- (Eliminar cargo): <<Extend>>
+
+folder "Paquete RRHH" {
+
+[RRHH]
+
+  }
+
+  [RRHH] -- (Gestionar RRHH)
+  [RRHH] -- (Gestionar cargo)
+
+
+
+
+@endluml

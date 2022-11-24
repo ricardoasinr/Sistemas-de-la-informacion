@@ -1,0 +1,52 @@
+@startuml Paquete tercer nivel Contabilidad Cuenta
+
+
+
+
+
+folder "Paquete Contabilidad::Cuenta" {
+
+class Banco {
+  Int nroCuentaBanco
+  String nombre
+   {abstract} bool Buscar(nroCuentaBanco): return Encontrado
+  {abstract} void Registrar(Banco) 
+  {abstract} void Modificar(Banco) 
+  {abstract} void Eliminar(Banco)
+ 
+}
+
+class CuentaEmpresa {
+  Int nroCuentaEmpresa
+  Float monto 
+  {abstract} bool Buscar(nroCuentaEmpresa): return Encontrado
+  {abstract} void Registrar(CuentaEmpresa) 
+  {abstract} void Modificar(CuentaEmpresa) 
+  {abstract} void Eliminar(CuentaEmpresa)
+}
+
+class CuentaCliente {
+  Int nroCuentaCliente
+  String descripcion 
+  Float Monto
+  {abstract} bool Buscar(nroCuentaCliente): return Encontrado
+  {abstract} void Registrar(CuentaCliente) 
+  {abstract} void Modificar(CuentaCliente) 
+  {abstract} void Eliminar(CuentaCliente)
+}
+
+
+
+Banco "1" -right- "0..*" CuentaEmpresa
+Banco "1" -down- "0..*" CuentaCliente
+CuentaCliente "0..*" -right- "1..*" Facturacion::Cliente
+
+
+  }
+
+
+
+
+
+
+@endluml
