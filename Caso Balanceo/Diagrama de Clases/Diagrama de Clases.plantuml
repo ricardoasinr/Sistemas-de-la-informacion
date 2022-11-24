@@ -1,4 +1,4 @@
-@startuml Clases
+@startuml Diagrama de Clases
 class Cliente {
   String codCliente
   String nombre
@@ -130,24 +130,25 @@ class Cargo {
   {abstract} void Eliminar(Cargo)
 }
 
-Cliente "1" -left "0..*" Factura 
-Factura "0..*" -- "1" Empleado
+
+Factura "0..*" ------ "1" Empleado
 Factura "1..*" -up- "0..*" Producto 
+Factura "1..*" -- "1" Cliente 
 (Factura, Producto) .. DetalleFactura
 
-Planilla "0..*" -- "1..*" CuentaEmpresa
-Planilla "0..*" - "1..*" Empleado
-Planilla "0..*" -right- "0..*" Cliente
+Planilla "0..*" ---- "1" CuentaEmpresa
+Planilla "0..*" - "1" Empleado
+Planilla "0..*" -- "0..*" Cliente
 CuentaEmpresa "0..*" -- "1" Banco
 
 (Planilla, Cliente) .. DetallePlanilla
 
 DetallePlanilla "0..*" -- "1..*" Banco
 
-Cliente "1" -down- "0..* "CuentaCliente
+Cliente "1" -- "0..* "CuentaCliente
 
-CuentaCliente "0..*" -- "1..*" Banco
-Empleado "0..*" -- "1.." Cargo
+CuentaCliente "0..*" -- "1" Banco
+Empleado "0..*" -- "1" Cargo
 
 
 

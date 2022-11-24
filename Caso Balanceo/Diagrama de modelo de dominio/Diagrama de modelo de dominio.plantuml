@@ -1,0 +1,80 @@
+@startuml Diagrama de modelo de dominio
+class Cliente {
+   codCliente
+   nombre
+   apellido
+   CI
+   dirección
+   NIT 
+   Nombre Nit
+   teléfono
+}
+
+class Factura {
+   nroFactura
+   fecha
+   Monto_Factura
+}
+
+
+class Producto {
+   nombre
+   apellido
+   precio
+   cantidadExistencia
+}
+
+class Empleado {
+   codEmpleado
+   descripcion
+   CI
+   dirección
+   teléfono
+
+}
+
+class Planilla {
+   nroPlanilla
+   fecha
+}
+
+class CuentaEmpresa {
+   nroCuentaEmpresa
+   monto 
+
+}
+
+class CuentaCliente {
+   nroCuentaCliente
+   descripcion 
+   Monto
+}
+
+
+
+
+class Banco {
+   nroCuentaBanco
+   nombre
+}
+
+
+class Cargo {
+   codCargo
+   nombre  
+}
+
+
+Factura "0..*" ------ "1" Empleado
+Factura "1..*" -up- "0..*" Producto 
+Factura "1..*" -- "1" Cliente 
+Planilla "0..*" ---- "1" CuentaEmpresa
+Planilla "0..*" - "1" Empleado
+Planilla "0..*" -- "0..*" Cliente
+CuentaEmpresa "0..*" -- "1" Banco
+Cliente "1" -- "0..* "CuentaCliente
+CuentaCliente "0..*" -- "1" Banco
+Empleado "0..*" -- "1" Cargo
+
+
+@enduml
