@@ -1,0 +1,39 @@
+@startuml Paquete clases RRHH
+
+
+folder "Paquete RRHH" {
+
+class Empleado {
+  Int codEmpleado
+  String descripcion
+  String CI
+  String dirección
+  String teléfono
+  
+
+  {abstract} bool Buscar(codEmpleado): return Encontrado
+  {abstract} void Registrar(Empleado) 
+  {abstract} void Modificar(Empleado) 
+  {abstract} void Eliminar(Empleado)
+}
+
+class Cargo {
+  Int codCargo
+  String nombre
+
+  {abstract} bool Buscar(codCargo): return Encontrado
+  {abstract} void Registrar(Cargo) 
+  {abstract} void Modificar(Cargo) 
+  {abstract} void Eliminar(Cargo)
+}
+Empleado "0..*" -- "1.." Cargo
+
+
+  }
+
+
+
+
+
+
+@endluml

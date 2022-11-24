@@ -1,0 +1,28 @@
+@startuml 9. Gestionar productos
+
+actor Encargado_de_venta
+
+
+Encargado_de_venta -> ":FormVenta": IngresarInformacion()
+
+
+":FormVenta" -> "Control producto": IntroducirProducto(Código producto)
+"Control producto" -> "Producto": VerificarProducto()
+":FormVenta" -> "Control producto": IntroducirNombreYPrecio
+"Control producto" -> "Producto": Verifica(Precio,Nombre)
+
+
+
+Encargado_de_venta -> ":FormVenta": GuardarProducto()
+
+":FormVenta" -> "Control producto": GuardarProducto()
+
+"Control producto" -> "Producto": RegistrarProducto()
+
+"Producto" --> ":FormVenta": Producto Registrado
+
+
+
+
+
+@enduml

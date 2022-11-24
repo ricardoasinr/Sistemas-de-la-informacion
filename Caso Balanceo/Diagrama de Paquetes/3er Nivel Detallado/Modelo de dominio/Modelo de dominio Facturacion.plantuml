@@ -1,0 +1,64 @@
+@startuml Modelo de dominio Facturacion
+
+
+folder "Paquete Facturacion" {
+
+class Factura {
+   nroFactura
+   fecha
+   Monto_Factura
+
+
+}
+
+class DetalleFactura {
+   cantidad
+   precio
+
+}
+class Cliente {
+   codCliente
+   nombre
+   apellido
+   CI
+   dirección
+    NIT 
+   Nombre Nit
+   teléfono
+
+
+}
+
+class Productos {
+   nombre
+   apellido
+  precio
+   cantidadExistencia
+
+ 
+}
+
+
+
+
+
+Cliente "1" -left- "0..*" Factura
+
+Factura "1..*" -down- "0..*" Productos
+
+Factura "0..*" -up- "1..*" RRHH::Empleados
+
+Cliente "1" -right- "1..* " Contabilidad::CuentaCliente
+
+(Factura, Productos) .. DetalleFactura
+
+
+
+  }
+
+
+
+
+
+
+@endluml

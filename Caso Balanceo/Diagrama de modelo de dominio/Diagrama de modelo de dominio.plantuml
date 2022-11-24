@@ -1,4 +1,4 @@
-@startuml Diagrama de modelo de dominio
+@startuml Diagrama de Modelo de dominio
 class Cliente {
    codCliente
    nombre

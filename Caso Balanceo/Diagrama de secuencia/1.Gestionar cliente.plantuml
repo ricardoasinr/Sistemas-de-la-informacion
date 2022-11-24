@@ -1,0 +1,25 @@
+@startuml 1. Gestionar cliente
+
+actor Encargado_Venta
+actor Cliente
+Cliente -> Encargado_Venta
+
+
+Encargado_Venta -> ":FormCliente": IngresarCliente()
+
+
+":FormCliente" -> "Control cliente": Introducir(Carnet, nombre, apellido)
+"Control cliente" -> ":Cliente": VerificarDatos()
+
+":FormCliente" -> "Control cliente": Verificar(Empleado, Cargo)
+
+
+Encargado_Venta -> ":FormCliente": GuardarCliente()
+
+":FormCliente" -> "Control cliente": GuardarCliente()
+"Control cliente" -> ":Cliente": RegistrarCliente()
+
+":Cliente" --> ":FormCliente": Cliente Registrado
+
+
+@enduml

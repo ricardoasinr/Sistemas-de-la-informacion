@@ -1,0 +1,41 @@
+@startuml Modelo de dominio Contabilidad Cuenta
+
+
+
+folder "Paquete Contabilidad::Cuenta" {
+
+class Banco {
+   nroCuentaBanco
+   nombre
+ 
+ 
+}
+
+class CuentaEmpresa {
+   nroCuentaEmpresa
+   monto 
+
+}
+
+class CuentaCliente {
+   nroCuentaCliente
+   descripcion 
+   Monto
+
+}
+
+
+
+Banco "1" -right- "0..*" CuentaEmpresa
+Banco "1" -down- "0..*" CuentaCliente
+CuentaCliente "0..*" -right- "1..*" Facturacion::Cliente
+
+
+  }
+
+
+
+
+
+
+@endluml

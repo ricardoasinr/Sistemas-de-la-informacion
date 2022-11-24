@@ -6,20 +6,10 @@ actor Encargado_RRHH
 Encargado_RRHH -> ":FormCliente": Introducir(Empleado, Cargo)
 ":FormCliente" -> "Control empleado": Verificar(Empleado, Cargo)
 "Control empleado" -> "Empleado": Verificar(Empleado)
-
 "Empleado" -> "Cargo": Verificar(Cargo)
-
 Encargado_RRHH -> ":FormCliente": Guardar(Empleado) 
-
-
 ":FormCliente" -> "Control empleado": Guardar(Empleado)
-
-
-
 "Control empleado" -> "Empleado": Registrar(Empleado)
-
-
-
 "Empleado"--> ":FormCliente":Empleado registrado
 
 

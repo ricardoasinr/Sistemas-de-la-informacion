@@ -1,0 +1,30 @@
+@startuml Modelo de dominio RRHH
+
+
+folder "Paquete RRHH" {
+
+class Empleado {
+   codEmpleado
+   descripcion
+   CI
+   dirección
+   teléfono
+
+}
+
+class Cargo {
+   codCargo
+   nombre
+
+}
+Empleado "0..*" -- "1.." Cargo
+
+
+  }
+
+
+
+
+
+
+@endluml

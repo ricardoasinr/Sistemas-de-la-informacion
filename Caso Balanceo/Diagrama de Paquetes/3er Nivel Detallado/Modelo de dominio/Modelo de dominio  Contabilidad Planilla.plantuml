@@ -1,0 +1,36 @@
+@startuml Modelo de dominio Contabilidad Planilla
+
+
+
+
+
+folder "Paquete Contabilidad::Planilla" {
+
+class Planilla {
+   nroPlanilla
+   fecha
+  
+}
+class DetallePlanilla {
+   codBanco
+   Monto
+
+ 
+}
+
+
+Planilla "0..*" -- "0..*" Contabilidad::Cuenta::Banco
+Planilla "1" -up- "0..*" Contabilidad::Cuenta::CuentaEmpresa
+Planilla "0..*" -- "1" RRHH::Empleados
+Planilla "1..*" -down- "0..*" Facturacion::cliente
+Planilla "0" -- "1" DetallePlanilla
+
+
+  }
+
+
+
+
+
+
+@endluml
