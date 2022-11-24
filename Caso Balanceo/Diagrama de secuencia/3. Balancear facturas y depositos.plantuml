@@ -1,0 +1,30 @@
+@startuml 3. Balancear facturas y depositos
+
+actor Encargado_de_contabilidad
+
+
+Encargado_de_contabilidad -> ":FormBalancear"
+
+
+":FormBalancear" -> "Gestionar mensajero": BuscarMensajero(Mensajero)
+
+"Gestionar mensajero" --> ":FormBalancear": ExisteMensajero()
+
+"Gestionar mensajero" -> "Gestionar facturas" : BuscarFacturas()
+
+"Gestionar Facturas" -> "Gestionar depositos":BuscarYVerificarDepositos()
+
+"Gestionar depositos" --> "Gestionar mensajero" : ExisteYCoincidenDepositos()
+
+"Gestionar facturas" --> "Gestionar mensajero" : ExisteYCoincidenMontos()
+
+"Gestionar depositos" -> "Gestionar cuentas contables" : Acreditar()
+"Gestionar facturas" -> "Gestionar cuentas contables" : Acreditar()
+
+"Gestionar cuentas contables" --> ":FormBalancear": RealizarBalanceo()
+
+
+
+
+
+@enduml
