@@ -1,0 +1,11 @@
+@startuml 11 Gestionar Cargo
+actor Encargado_de_RRHH
+
+Encargado_de_RRHH -- (Gestionar cargo)
+
+(Gestionar cargo)-.> (Verificar cargo): <<Include>>
+(Gestionar cargo)<.- (Insertar cargo): <<Extend>>
+(Gestionar cargo)<.- (Modificar cargo): <<Extend>>
+(Gestionar cargo)<.- (Eliminar cargo): <<Extend>>
+
+@enduml

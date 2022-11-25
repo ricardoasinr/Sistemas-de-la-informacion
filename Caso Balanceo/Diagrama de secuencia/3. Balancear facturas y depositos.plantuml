@@ -3,12 +3,12 @@
 actor Encargado_de_contabilidad
 
 
-Encargado_de_contabilidad -> ":FormBalancear"
+Encargado_de_contabilidad -> ":Controlador Balanceo"
 
 
-":FormBalancear" -> "Gestionar mensajero": BuscarMensajero(Mensajero)
+":Controlador Balanceo" -> "Gestionar mensajero": BuscarMensajero(Mensajero)
 
-"Gestionar mensajero" --> ":FormBalancear": ExisteMensajero()
+"Gestionar mensajero" --> ":Controlador Balanceo": ExisteMensajero()
 
 "Gestionar mensajero" -> "Gestionar facturas" : BuscarFacturas()
 
@@ -21,7 +21,7 @@ Encargado_de_contabilidad -> ":FormBalancear"
 "Gestionar depositos" -> "Gestionar cuentas contables" : Acreditar()
 "Gestionar facturas" -> "Gestionar cuentas contables" : Acreditar()
 
-"Gestionar cuentas contables" --> ":FormBalancear": RealizarBalanceo()
+"Gestionar cuentas contables" --> ":Controlador Balanceo": RealizarBalanceo()
 
 
 
