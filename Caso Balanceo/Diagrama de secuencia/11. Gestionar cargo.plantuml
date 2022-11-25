@@ -1,0 +1,24 @@
+@startuml 11. Gestionar cargo
+
+actor Encargado_RRHH
+
+
+
+Encargado_RRHH -> ":FormCargo": IngresarCargo()
+
+
+":FormCargo" -> "Control cargo": Introducir(Cargo)
+"Control cargo" -> ":Cargo": VerificarDatos()
+
+":FormCargo" -> "Control cargo": Verificar(Cargo)
+
+
+Encargado_RRHH -> ":FormCargo": GuardarCargo()
+
+":FormCargo" -> "Control cargo": GuardarCargo()
+"Control cargo" -> ":Cargo": RegistrarCargo()
+
+":Cargo" --> ":FormCargo": Cargo Registrado
+
+
+@enduml
