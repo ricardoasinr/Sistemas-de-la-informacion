@@ -3,25 +3,22 @@
 actor Encargado_de_contabilidad
 
 
-Encargado_de_contabilidad -> ":Controlador Balanceo"
+Encargado_de_contabilidad -> ":FormBalanceo":Balancear
 
 
-":Controlador Balanceo" -> "Gestionar mensajero": BuscarMensajero(Mensajero)
+":FormBalanceo" -> "Control balancear": Balancear()
+"Control balancear" -> "Mensajero":BuscarMensajero(Mensajero)
+"Control balancear" -> "Facturas": BuscarFacturas(Facturas)
+"Control balancear" -> "Facturas": SumarFacturas()
+"Control balancear" -> "Planillas": BuscarPlanillas(Mensajero)
+"Control balancear" -> "Planillas": SumarDepositos()
+"Control balancear" -> "CuentaEmpresa": BuscarCuentaEmpresa(Banco)
+"Control balancear" -> "Cliente": BuscarCliente(Factura)
+"Control balancear" -> "CuentaCliente": BuscarCuentaCliente(Cliente)
+"Control balancear" -> "CuentaEmpresa": DebitarCuentaEmpresa(CuentaEmpresa, Banco)
+"Control balancear" -> "CuentaCliente": AcreditarCuentaCliente(CuentaCliente)
 
-"Gestionar mensajero" --> ":Controlador Balanceo": ExisteMensajero()
 
-"Gestionar mensajero" -> "Gestionar facturas" : BuscarFacturas()
-
-"Gestionar Facturas" -> "Gestionar depositos":BuscarYVerificarDepositos()
-
-"Gestionar depositos" --> "Gestionar mensajero" : ExisteYCoincidenDepositos()
-
-"Gestionar facturas" --> "Gestionar mensajero" : ExisteYCoincidenMontos()
-
-"Gestionar depositos" -> "Gestionar cuentas contables" : Acreditar()
-"Gestionar facturas" -> "Gestionar cuentas contables" : Acreditar()
-
-"Gestionar cuentas contables" --> ":Controlador Balanceo": RealizarBalanceo()
 
 
 
